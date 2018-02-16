@@ -9,7 +9,7 @@ const passport = require('passport');
 
 // mongoose.Promise = global.Promise;
 
-const { PORT, DATABASE_URL } = require('./config');
+// const { PORT, DATABASE_URL } = require('./config');
 
 const app = express();
 
@@ -80,10 +80,12 @@ const app = express();
 // module.exports = { app, runServer, closeServer };
 
 
-app.get('./api/*', (req, res) => {
-  res.json({ok: true})
-});
+const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`listening on port ${PORT}`))
+ app.get('/api/*', (req, res) => {
+   res.json({ok: true});
+ });
 
-module.exports = {app}
+ app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
+ module.exports = {app};
