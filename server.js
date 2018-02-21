@@ -3,10 +3,6 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-const cors = require('cors');
-const {CLIENT_ORIGIN} = require('./config');
-
-
 
 app.get('/api/*', (req, res) => {
 res.json({ok: true});
