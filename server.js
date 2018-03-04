@@ -1,7 +1,11 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const mongoose = require('mongoose')
+
 const {CLIENT_ORIGIN} = require('./config');
+
+mongoose.Promise = global.Promise;
 
 app.use(
   cors({
