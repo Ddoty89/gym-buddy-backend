@@ -13,6 +13,16 @@ app.use(
   })
 );
 
+app.get('/', (req, res) => {
+	res.json('hello world')
+})
+
+app.get('/testing', (req, res) => {
+	res.json('this is a testing endpoint')
+})
+
+
+
 const PORT = process.env.PORT || 3000;
 
 app.get('/api/*', (req, res) => {
