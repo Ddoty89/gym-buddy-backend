@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 
 const {PORT, CLIENT_ORIGIN} = require('./config');
 
+const { router: workoutRouter } = require('./workouts')
+
 mongoose.Promise = global.Promise;
 
 app.use(
@@ -12,6 +14,8 @@ app.use(
 		origin: CLIENT_ORIGIN
   })
 );
+
+app.use('/api/workouts', workoutRouter);
 
 app.get('/', (req, res) => {
 	res.json('hello world')

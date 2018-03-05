@@ -1,1 +1,0 @@
-equipment-finder.js
