@@ -35,13 +35,11 @@ router.post('/saved', jsonParser, (req, res) => {
 router.get('/saved', (req, res) => {
 	Workouts
 	.find()
-	// .then(workouts => {
-	// 	res.json({
-	// 		workouts : workouts.map(
-	// 			workout => {workout.seralize()})
-	// 	})
-	// })
-
-})
+	.then(workouts => res.json({
+			workouts: workouts.map(
+				workouts => {workouts.seralize()})
+		}))
+	.catch(err => res.status(500).json({message: err}));
+});
 
 module.exports = {router};
