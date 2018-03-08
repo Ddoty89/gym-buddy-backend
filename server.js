@@ -25,7 +25,7 @@ app.get('/testing', (req, res) => {
 	res.json('this is a testing endpoint')
 })
 
-app.get('/api/*', (req, res) => {
+app.get('/api/fooooo', (req, res) => {
 res.json({ok: true});
 });
 

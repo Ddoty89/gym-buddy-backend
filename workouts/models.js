@@ -4,12 +4,12 @@ mongoose.Promise = global.Promise;
 
 const WorkoutSchema = mongoose.Schema({
 	username: {
-		type: String,
-		required: true
+		type: String
+		// required: true
 	},
 	equipment: {
-		type: String,
-		required: true
+		type: String
+		// required: true
 	},
 	muscle: {
 		type: String,
