@@ -2,28 +2,28 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const {Stats} = require('./models')
+const {Workouts} = require('./models')
 
 const router = express.Router();
 
 const jsonParser = bodyParser.json();
 
-router.post('/personal-stats', jsonParser, (req, res) => {
-	let {username, gender, height, weight, goals, mileTime, notes} = req.body ;
+router.post('/saved', jsonParser, (req, res) => {
+	let {username, equipment, muscle, sets, repetitions, weight, notes} = req.body ;
 	// sets = sets.trim()
 	// repetitions = repetitions.trim()
 	// notes = notes.trim()
-	return Stats.create({
-		username,
-		gender,
-		height,
+	return Workouts.create({
+		username, 
+		equipment, 
+		muscle, 
+		sets, 
+		repetitions,
 		weight,
-		goals,
-		mileTime,
 		notes
 	})
-	.then(stats => {
-		return res.status(201).json(stats.serialize());
+	.then(workouts => {
+		return res.status(201).json(workouts.serialize());
 	}) 
 	.catch(err => {
 		if(err.reason === 'ValidationError') {
@@ -33,10 +33,11 @@ router.post('/personal-stats', jsonParser, (req, res) => {
 	});
 });
 
-router.get('/personal-stats', (req, res) => {
-	Stats
+router.get('/saved', (req, res) => {
+
+	Workouts
 	.find()
-	.then(stats => res.json({stats}))
+	.then(workouts => res.json({workouts}))
 	.catch(err => res.status(500).json({message: err}));
 });
 
