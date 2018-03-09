@@ -14,7 +14,7 @@ router.post('/', jsonParser, (req, res) => {
 	firstName = firstName.trim();
 	lastName = lastName.trim();
 	email = email.trim();
-
+	
 	return User.find({username})
 		.count()
 		.then(count => {
