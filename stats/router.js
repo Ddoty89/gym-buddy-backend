@@ -36,7 +36,7 @@ router.post('/personal-stats', jsonParser, (req, res) => {
 router.get('/personal-stats', (req, res) => {
 	Stats
 	.find()
-	.then(workouts => res.json({stats}))
+	.then(stats => res.json({stats}))
 	.catch(err => res.status(500).json({message: err}));
 });
 
