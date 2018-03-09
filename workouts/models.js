@@ -4,12 +4,12 @@ mongoose.Promise = global.Promise;
 
 const WorkoutSchema = mongoose.Schema({
 	username: {
-		type: String
-		// required: true
+		type: String,
+		required: true
 	},
-	equipment: {
-		type: String
-		// required: true
+	equipment: { 
+		type: String,
+		required: true
 	},
 	muscle: {
 		type: String,
@@ -20,6 +20,10 @@ const WorkoutSchema = mongoose.Schema({
 		default: ''
 	},
 	repetitions: {
+		type: String,
+		default: ''
+	},
+	weight: {
 		type: String,
 		default: ''
 	},
@@ -36,6 +40,7 @@ WorkoutSchema.methods.serialize = function () {
 		muscle: this.muscle || '',
 		sets: this.sets || '',
 		repetitions: this.repetitions || '',
+		weight: this.weight || '',
 		notes: this.notes || ''
 	};
 };
