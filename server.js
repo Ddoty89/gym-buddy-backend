@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const passport = require('passport');
 
 const {PORT, CLIENT_ORIGIN, DATABASE_URL} = require('./config');
 
 const { router: workoutRouter } = require('./workouts');
 const { router: statsRouter } = require('./stats');
 const { router: userRouter } = require('./user');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth')
 
 mongoose.Promise = global.Promise;
 
@@ -17,9 +19,21 @@ app.use(
   })
 );
 
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
 app.use('/api/workouts', workoutRouter);
 app.use('/api/stats', statsRouter);
 app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+app.get('/api/protected', jwtAuth, (req, res) => {
+	return res.json({
+		data: 'rosebud'
+	});
+});
 
 let server;
 
