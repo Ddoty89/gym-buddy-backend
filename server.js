@@ -7,6 +7,7 @@ const {PORT, CLIENT_ORIGIN, DATABASE_URL} = require('./config');
 
 const { router: workoutRouter } = require('./workouts');
 const { router: statsRouter } = require('./stats');
+const { router: userRouter } = require('./user');
 
 mongoose.Promise = global.Promise;
 
@@ -18,6 +19,7 @@ app.use(
 
 app.use('/api/workouts', workoutRouter);
 app.use('/api/stats', statsRouter);
+app.use('/api/users', userRouter);
 
 let server;
 
