@@ -10,9 +10,9 @@ const jsonParser = bodyParser.json();
 
 router.post('/personal-stats', jsonParser, (req, res) => {
 	let {username, gender, height, weight, goals, mileTime, notes} = req.body ;
-	// sets = sets.trim()
-	// repetitions = repetitions.trim()
-	// notes = notes.trim()
+	sets = sets.trim()
+	repetitions = repetitions.trim()
+	notes = notes.trim()
 	return Stats.create({
 		username,
 		gender,

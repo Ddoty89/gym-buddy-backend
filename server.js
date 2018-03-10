@@ -27,6 +27,10 @@ app.use('/api/stats', statsRouter);
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
 
+app.get('/api/fooooo', (req, res) => {
+	res.json({ok: 'true'})
+})
+
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
 app.get('/api/protected', jwtAuth, (req, res) => {
