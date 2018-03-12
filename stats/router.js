@@ -33,7 +33,7 @@ router.post('/personal-stats', jsonParser, (req, res) => {
 	});
 });
 
-router.get('/personal-stats', (req, res) => {
+router.get('/personal-stats/:username', (req, res) => {
 	Stats
 	.find()
 	.then(stats => res.json({stats}))
