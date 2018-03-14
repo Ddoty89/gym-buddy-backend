@@ -33,7 +33,7 @@ router.post('/saved', jsonParser, (req, res) => {
 	});
 });
 
-router.get('/saved/:username', (req, res) => {
+router.get('/saved', (req, res) => {
 
 	Workouts
 	.find()
