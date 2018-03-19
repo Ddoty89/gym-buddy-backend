@@ -12,15 +12,15 @@ const UserSchema = mongoose.Schema({
 	},
 	firstName: {
 		type: String,
-		required: true
+		default: ''
 	},
 	lastName: { 
 		type: String,
-		required: true
+		default: ''
 	},
 	email: {
 		type: String,
-		required: true
+		default: ''
 	},
 	password: {
 		type: String,
