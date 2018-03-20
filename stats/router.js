@@ -1,12 +1,17 @@
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 
 const {Stats} = require('./models')
 
 const router = express.Router();
 
 const jsonParser = bodyParser.json();
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+router.use(jwtAuth)
 
 router.post('/personal-stats', jsonParser, (req, res) => {
 	let {username, gender, height, weight, goals, mileTime, notes} = req.body ;
