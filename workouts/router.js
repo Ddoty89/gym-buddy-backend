@@ -10,9 +10,6 @@ const jsonParser = bodyParser.json();
 
 router.post('/saved', jsonParser, (req, res) => {
 	let {username, equipment, muscle, sets, repetitions, weight, notes} = req.body ;
-	// sets = sets.trim()
-	// repetitions = repetitions.trim()
-	// notes = notes.trim()
 	return Workouts.create({
 		username, 
 		equipment, 
