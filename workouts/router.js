@@ -1,12 +1,19 @@
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const passport = require('passport');
 
 const {Workouts} = require('./models')
 
 const router = express.Router();
 
 const jsonParser = bodyParser.json();
+
+// mongoose.Promise = global.Promise;
+// const jwtAuth = passport.authenticate('jwt', { session: false });
+
+// router.use(jwtAuth);
 
 router.post('/saved', jsonParser, (req, res) => {
 	let {username, equipment, muscle, sets, repetitions, weight, notes} = req.body ;
@@ -31,7 +38,6 @@ router.post('/saved', jsonParser, (req, res) => {
 });
 
 router.get('/saved', (req, res) => {
-
 	Workouts
 	.find()
 	.then(workouts => res.json({workouts}))

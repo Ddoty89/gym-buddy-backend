@@ -17,7 +17,6 @@ const jsonParser = bodyParser.json();
 
 router.post('/personal-stats', jsonParser, (req, res) => {
 	let {username, weight, goals, mileTime, date, notes} = req.body;
-	console.log(req.body)
 	return Stats.create({
 		username,
 		weight,
