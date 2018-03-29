@@ -16,14 +16,14 @@ const jsonParser = bodyParser.json();
 // router.use(jwtAuth);
 
 router.post('/personal-stats', jsonParser, (req, res) => {
-	let {username, gender, height, weight, goals, mileTime, notes} = req.body ;
+	let {username, weight, goals, mileTime, date, notes} = req.body;
+	console.log(req.body)
 	return Stats.create({
 		username,
-		gender,
-		height,
 		weight,
 		goals,
 		mileTime,
+		date,
 		notes
 	})
 	.then(stats => {

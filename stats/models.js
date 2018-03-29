@@ -7,13 +7,6 @@ const StatsSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	gender: {
-		type: String,
-		default: ''
-	},
-	height: { 
-		type: String
-	},
 	weight: {
 		type: String,
 		default: ''
@@ -26,6 +19,10 @@ const StatsSchema = mongoose.Schema({
 		type: String,
 		default: ''
 	},
+	date: {
+		type: String,
+		default: ''
+	},
 	notes: {
 		type: String,
 		default: ''
@@ -35,8 +32,6 @@ const StatsSchema = mongoose.Schema({
 StatsSchema.methods.serialize = function () {
 	return {
 		username: this.username || '',
-		gender: this.gender || '',
-		height: this.height || '',
 		weight: this.weight || '',
 		goals: this.goals || '',
 		mileTime: this.mileTime || '',
