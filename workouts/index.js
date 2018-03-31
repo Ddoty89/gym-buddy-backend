@@ -1,6 +1,6 @@
 'use strict';
 
-const {Workouts} = require('./models');
+const {Workouts, Muscles} = require('./models');
 const {router} = require('./router')
 
-module.exports = {Workouts, router};
+module.exports = {Workouts, Muscles, router};

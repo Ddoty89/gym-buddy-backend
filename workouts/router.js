@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const {Workouts} = require('./models')
+const {Workouts, Muscles} = require('./models')
 
 const router = express.Router();
 
@@ -47,7 +47,35 @@ router.get('/saved', (req, res) => {
 module.exports = {router};
 
 
+router.post('/muscles', jsonParser, (req, res) => {
+	let {barbellSquat, benchPress, dumbellCurl, gymMatCrunch, inclineBenchPress, pullUpBar} = req.body ;
+	return Muscles.create({
+		barbellSquat,
+		benchPress,
+		dumbellCurl,
+		gymMatCrunch,
+		inclineBenchPress,
+		pullUpBar
+	})
+	.then(muscles => {
+		return res.status(201).json(muscles.serialize());
+	}) 
+	.catch(err => {
+		if(err.reason === 'ValidationError') {
+			return res.status(err.code).json(err);
+		}
+		res.status(500).json({code: 500, message: err});
+	});
+});
 
+router.get('/muscles', (req, res) => {
+	Muscles
+	.find()
+	.then(muscles => res.json({muslces}))
+	.catch(err => res.status(500).json({message: err}));
+});
+
+module.exports = {router};
 
 
 

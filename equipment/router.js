@@ -10,10 +10,10 @@ const router = express.Router();
 
 const jsonParser = bodyParser.json();
 
-mongoose.Promise = global.Promise;
-const jwtAuth = passport.authenticate('jwt', { session: false });
+// mongoose.Promise = global.Promise;
+// const jwtAuth = passport.authenticate('jwt', { session: false });
 
-router.use(jwtAuth);
+// router.use(jwtAuth);
 
 router.post('/personal-stats', jsonParser, (req, res) => {
 	let {username, weight, goals, mileTime, date, notes} = req.body;
