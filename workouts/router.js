@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const {Workouts, Muscles} = require('./models')
+const {Workouts, Muscles, WorkedMuscle} = require('./models')
 
 const router = express.Router();
 
@@ -69,9 +69,9 @@ router.post('/muscles', jsonParser, (req, res) => {
 });
 
 router.get('/muscles', (req, res) => {
-	Muscles
-	.find()
-	.then(muscles => res.json({muslces}))
+	return Muscles.find()
+
+	.then(muscles => res.json({muscles}))
 	.catch(err => res.status(500).json({message: err}));
 });
 

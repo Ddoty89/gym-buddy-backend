@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const { workedMuscleSchema } = require('./childSchema')
+// const { workedMuscleSchema } = require('./childSchema')
 
 mongoose.Promise = global.Promise;
 
@@ -47,27 +47,13 @@ WorkoutSchema.methods.serialize = function () {
 	};
 };
 
-
-
 const MuscleSchema = mongoose.Schema({
-	barbellSquat: {
-		type: [workedMuscleSchema]
-	},
-	benchPress: { 
-		type: [workedMuscleSchema]
-	},
-	dumbellCurl: {
-		type: [workedMuscleSchema]
-	},
-	gymMatCrunch: {
-		type: [workedMuscleSchema]
-	},
-	inclineBenchPress: {
-		type: [workedMuscleSchema]
-	},
-	pullUpBar: {
-		type: [workedMuscleSchema]
-	}
+	barbellSquat: Array,
+	benchPress: Array,
+	dumbellCurl: Array,
+	gymMatCrunch: Array,
+	inclineBenchPress: Array,
+	pullUpBar: Array
 });
 
 MuscleSchema.methods.serialize = function () {
