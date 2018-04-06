@@ -16,15 +16,11 @@ const jsonParser = bodyParser.json();
 // router.use(jwtAuth);
 
 router.post('/saved', jsonParser, (req, res) => {
-	let {username, equipment, muscle, sets, repetitions, weight, notes} = req.body ;
+	let {username, workoutTitle, exerciseList} = req.body ;
 	return Workouts.create({
-		username, 
-		equipment, 
-		muscle, 
-		sets, 
-		repetitions,
-		weight,
-		notes
+		username,
+		workoutTitle,
+		exerciseList 
 	})
 	.then(workouts => {
 		return res.status(201).json(workouts.serialize());
