@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const {Workouts, Muscles, WorkedMuscle} = require('./models')
+const {Workouts, WorkedMuscles} = require('./models')
 
 const router = express.Router();
 
@@ -45,7 +45,7 @@ module.exports = {router};
 
 router.post('/muscles', jsonParser, (req, res) => {
 	let {barbellSquat, benchPress, dumbellCurl, gymMatCrunch, inclineBenchPress, pullUpBar} = req.body ;
-	return Muscles.create({
+	return WorkedMuscles.create({
 		barbellSquat,
 		benchPress,
 		dumbellCurl,
@@ -65,7 +65,7 @@ router.post('/muscles', jsonParser, (req, res) => {
 });
 
 router.get('/muscles', (req, res) => {
-	return Muscles.find()
+	return WorkedMuscles.find()
 
 	.then(muscles => res.json({muscles}))
 	.catch(err => res.status(500).json({message: err}));

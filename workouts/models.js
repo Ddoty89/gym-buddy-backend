@@ -4,10 +4,7 @@ mongoose.Promise = global.Promise;
 
 const WorkoutSchema = mongoose.Schema({
 	username: String,
-	workoutTitle: {
-		type: String,
-		default: 'Not Titled'
-	},
+	workoutTitle: String,
 	exerciseList: Array
 });
 
@@ -39,7 +36,7 @@ MuscleSchema.methods.serialize = function () {
 	};
 };
 
-const Muscles = mongoose.model('Muscles', MuscleSchema);
+const WorkedMuscles = mongoose.model('Muscles', MuscleSchema);
 const Workouts = mongoose.model('Workouts', WorkoutSchema);
 
-module.exports = {Workouts, Muscles}
+module.exports = {Workouts, WorkedMuscles}

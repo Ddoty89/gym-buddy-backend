@@ -10,6 +10,7 @@ const { router: workoutRouter } = require('./workouts');
 const { router: statsRouter } = require('./stats');
 const { router: userRouter } = require('./user');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth')
+const { router: muscleGroupRouter } = require('./muscleGroups')
 
 mongoose.Promise = global.Promise;
 
@@ -26,6 +27,7 @@ app.use('/api/workouts', workoutRouter);
 app.use('/api/stats', statsRouter);
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/muscles', muscleGroupRouter)
 
 app.get('/api/fooooo', (req, res) => {
 	res.json({ok: 'true'})
