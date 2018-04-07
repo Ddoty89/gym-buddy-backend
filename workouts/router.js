@@ -33,9 +33,9 @@ router.post('/saved', jsonParser, (req, res) => {
 	});
 });
 
-router.get('/saved', (req, res) => {
+router.get('/saved/:username', (req, res) => {
 	Workouts
-	.find()
+	.find({username: req.params.username})
 	.then(workouts => res.json({workouts}))
 	.catch(err => res.status(500).json({message: err}));
 });
