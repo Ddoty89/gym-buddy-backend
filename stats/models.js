@@ -35,6 +35,7 @@ StatsSchema.methods.serialize = function () {
 		weight: this.weight || '',
 		goals: this.goals || '',
 		mileTime: this.mileTime || '',
+		date: this.date || '',
 		notes: this.notes || ''
 	};
 };
