@@ -1,9 +1,16 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const passport = require('passport');
 
-const {CLIENT_ORIGIN} = require('./config');
+const {PORT, CLIENT_ORIGIN, DATABASE_URL} = require('./config');
+
+const { router: workoutRouter } = require('./workouts');
+const { router: statsRouter } = require('./stats');
+const { router: userRouter } = require('./user');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth')
+const { router: muscleGroupRouter } = require('./muscleGroups')
 
 mongoose.Promise = global.Promise;
 
@@ -13,22 +20,64 @@ app.use(
   })
 );
 
-app.get('/', (req, res) => {
-	res.json('hello world')
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+app.use('/api/workouts', workoutRouter);
+app.use('/api/stats', statsRouter);
+app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/muscles', muscleGroupRouter)
+
+app.get('/api/fooooo', (req, res) => {
+	res.json({ok: 'true'})
 })
 
-app.get('/testing', (req, res) => {
-	res.json('this is a testing endpoint')
-})
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
-
-
-const PORT = process.env.PORT || 3000;
-
-app.get('/api/*', (req, res) => {
-res.json({ok: true});
+app.get('/api/protected', jwtAuth, (req, res) => {
+	return res.json({
+		data: 'rosebud'
+	});
 });
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+let server;
 
-module.exports = {app};
+function runServer() {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(DATABASE_URL, { useMongoClient: true }, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app
+        .listen(PORT, () => {
+          console.log(`Your app is listening on port ${PORT}`);
+          resolve();
+        })
+        .on('error', err => {
+          mongoose.disconnect();
+          reject(err);
+        });
+    });
+  });
+}
+
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
+      console.log('Closing server');
+      server.close(err => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+}
+
+module.exports = {app, runServer, closeServer};
