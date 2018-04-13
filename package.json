@@ -1,0 +1,29 @@
+{
+  "name": "gym-buddy-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "mongoose": "^4.13.11",
+    "nodemon": "^1.17.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ddoty89/gym-buddy-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ddoty89/gym-buddy-backend/issues"
+  },
+  "homepage": "https://github.com/Ddoty89/gym-buddy-backend#readme"
+}
