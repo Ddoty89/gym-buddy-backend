@@ -8,7 +8,7 @@ describe('Stats', function() {
 
  it('should 200 on GET requests', function() {
    return chai.request('http://localhost:8080')
-    .get('/api/stats/personal-stats')
+    .get('/api/stats/personal-stats/:username')
     .then(function(res) {
       res.should.have.status(200);
       res.should.be.json;
