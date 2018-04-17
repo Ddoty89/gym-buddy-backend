@@ -14,11 +14,7 @@ const { router: muscleGroupRouter } = require('./muscleGroups')
 
 mongoose.Promise = global.Promise;
 
-app.use(
-  cors({
-		origin: CLIENT_ORIGIN
-  })
-);
+app.use(cors())
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
