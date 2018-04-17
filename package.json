@@ -9,9 +9,12 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.1",
+    "mocha": "^5.1.0",
     "mongoose": "^4.13.12",
     "nodemon": "^1.17.3",
     "npm": "^5.8.0",
